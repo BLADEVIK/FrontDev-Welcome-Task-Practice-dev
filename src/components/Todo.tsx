@@ -6,6 +6,7 @@ interface Task {
   id: number;
   text: string;
   completed: boolean;
+  date: string;
 }
 
 const Todo: React.FC = () => {
@@ -17,7 +18,6 @@ const Todo: React.FC = () => {
     document.body.classList.remove("light", "dark");
     document.body.classList.add(theme);
   }, [theme]);
-
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
@@ -31,6 +31,7 @@ const Todo: React.FC = () => {
       id: Date.now(),
       text: inputValue.trim(),
       completed: false,
+      date: new Date().toLocaleDateString(), 
     };
 
     setTasks((prev) => [...prev, newTask]);
@@ -77,9 +78,12 @@ const Todo: React.FC = () => {
               checked={task.completed}
               onChange={() => toggleTaskCompletion(task.id)}
             />
-            <span className={task.completed ? 'task-text completed' : 'task-text'}>
-              {task.text}
-            </span>
+            <div className='task-content'>
+              <span className={task.completed ? 'task-text completed' : 'task-text'}>
+                {task.text}
+              </span>
+              <span className='task-date'>{task.date}</span>
+            </div>
             <button className='delete-button' onClick={() => deleteTask(task.id)}>
               ×
             </button>
