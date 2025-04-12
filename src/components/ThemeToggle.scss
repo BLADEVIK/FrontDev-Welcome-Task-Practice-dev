@@ -9,21 +9,37 @@ body.light {
 }
 .theme-toggle {
   display: flex;
-  width: 35%;
-  padding: 10px;
   align-items: center;
-  gap: 10px;
-  justify-content: space-between;
+  padding: 10px;
+  gap: 8px;
   background: none;
-  font-size: 16px;
-  cursor: pointer;
   border: none;
-
+  cursor: pointer;
   &:focus {
     outline: none;
+    border: 1px solid #4caf50dd;
     border-radius: 10px;
-    border: 1px solid #4caf50;
   }
+
+  .theme-text {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+  }
+
+  .theme-icons svg {
+    fill: var(--icon-color);
+    transition: fill 0.3s ease;
+  }
+}
+
+:root {
+  --text-color: #000;
+  --icon-color: #000;
+}
+
+.dark {
+  --text-color: #fff;
+  --icon-color: #fff;
 }
 
 body.dark {
