@@ -60,6 +60,10 @@
     border: 1px dashed var(--task-border);
     border-radius: 5px;
     padding: 1rem;
-    
+  }
+
+  .task-text.completed {
+    text-decoration: line-through;
+    color: gray;
   }
 }
