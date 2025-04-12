@@ -27,7 +27,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ onClick }) => {
     <button className="theme-toggle" onClick={toggleTheme} type="button">
       <span className="theme-text">Сменить тему</span>
       <div className="theme-icons">
-        {isDark ? (
+        {!isDark ? (
           <svg
             className="moon-icon"
             xmlns="http://www.w3.org/2000/svg"
