@@ -1,0 +1,134 @@
+body.light {
+  background-color: #f5f5f5;
+  color: #222;
+
+  .todo-container {
+    background-color: #ffffff;
+    color: #222;
+  }
+}
+.theme-toggle {
+  border-radius: 10px;
+  width: 32%;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  background: var(--btn-bg);
+  border: none;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+}
+body.dark {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+
+  .todo-container {
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+  }
+}
+
+.todo-container {
+  width: 90%;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+
+  .todo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+
+    .task-input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+
+      &:focus {
+        outline: none;
+        border-color: #4caf50;
+      }
+    }
+
+    .add-button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+
+      &:hover {
+        background-color: #45a049;
+      }
+    }
+  }
+
+  .tasks-list {
+    min-height: 200px;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+  }
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.task-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.task-text.completed {
+  color: gray;
+}
+
+.delete-button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #ff5c5c;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 92, 92, 0.1);
+  border-radius: 50%;
+  transform: scale(1.1);
+}
