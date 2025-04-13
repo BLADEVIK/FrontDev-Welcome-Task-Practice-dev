@@ -13,6 +13,7 @@ const Todo: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [tasks, setTasks] = useState<Task[]>([]);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
 
   useEffect(() => {
     document.body.classList.remove("light", "dark");
@@ -44,6 +45,25 @@ const Todo: React.FC = () => {
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
+  };
+
+  const startEditing = (task: Task) => {
+    setEditingTask(task);
+  };
+
+  const handleEdit = (id: number, newText: string) => {
+    if (!newText.trim()) return;
+    
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, text: newText.trim() } : task
+      )
+    );
+    setEditingTask(null);
+  };
+
+  const cancelEditing = () => {
+    setEditingTask(null);
   };
 
   const deleteTask = (id: number) => {
@@ -79,14 +99,52 @@ const Todo: React.FC = () => {
               onChange={() => toggleTaskCompletion(task.id)}
             />
             <div className='task-content'>
-              <span className={task.completed ? 'task-text completed' : 'task-text'}>
-                {task.text}
-              </span>
-              <span className='task-date'>{task.date}</span>
+              {editingTask?.id === task.id ? (
+                <div className='edit-form'>
+                  <input
+                    type='text'
+                    value={editingTask.text}
+                    onChange={(e) => setEditingTask({ ...editingTask, text: e.target.value })}
+                    className='edit-input'
+                    autoFocus
+                  />
+                  <div className='edit-buttons'>
+                    <button 
+                      className='save-button'
+                      onClick={() => handleEdit(task.id, editingTask.text)}
+                    >
+                      ✓
+                    </button>
+                    <button 
+                      className='cancel-button'
+                      onClick={cancelEditing}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <span className={task.completed ? 'task-text completed' : 'task-text'}>
+                    {task.text}
+                  </span>
+                  <span className='task-date'>{task.date}</span>
+                </>
+              )}
             </div>
-            <button className='delete-button' onClick={() => deleteTask(task.id)}>
-              ×
-            </button>
+            {!editingTask && (
+              <>
+                <button 
+                  className='edit-button' 
+                  onClick={() => startEditing(task)}
+                >
+                  ✎
+                </button>
+                <button className='delete-button' onClick={() => deleteTask(task.id)}>
+                  ×
+                </button>
+              </>
+            )}
           </div>
         ))}
       </div>
