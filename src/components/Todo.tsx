@@ -85,7 +85,11 @@ const Todo: React.FC = () => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <button type='submit' className='add-button'>
+        <button 
+          type='submit' 
+          disabled={!inputValue.trim()}
+          {...(!inputValue.trim() ? { className: 'btnDisabled' } : {className: 'btnEnabled'})}
+        >
           Добавить
         </button>
       </form>

@@ -1,3 +1,10 @@
+@mixin btn-add {
+padding: 10px 20px;
+color: white;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+}
 .todo-container {
   width: 90%;
   max-width: 500px;
@@ -37,20 +44,6 @@
       &:focus {
         outline: none;
         border-color: var(--input-focus);
-      }
-    }
-
-    .add-button {
-      padding: 10px 20px;
-      background-color: var(--btn-bg);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-
-      &:hover {
-        background-color: var(--btn-hover);
       }
     }
   }
@@ -142,7 +135,19 @@
       }
     }
   }
+.btnDisabled{
+  @include btn-add;
+  background-color:rgb(164, 160, 154);
+}
+.btnEnabled{
+ @include btn-add;
+  background-color: var(--btn-bg);
+  cursor: pointer;
 
+      &:hover {
+        background-color: var(--btn-hover);
+      }
+}
   .edit-button {
     background: none;
     border: none;
